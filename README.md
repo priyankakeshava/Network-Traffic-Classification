@@ -1,27 +1,42 @@
 # Network Traffic Classification
 
-Multi-class network traffic classification (BENIGN, LDAP, and NetBIOS) using Python, Scikit-learn, and a Random Forest classifier.
+Multi-class network traffic classification (BENIGN, LDAP, and NetBIOS) using Python, Scikit-learn, and Random Forest.
 
 ## Overview
 
-This project focuses on classifying network traffic into three categories:
+This project applies supervised machine learning techniques to classify network traffic into three categories:
 
 * **BENIGN** – Normal network traffic
-* **LDAP** – LDAP-based attack traffic
-* **NetBIOS** – NetBIOS-based attack traffic
+* **LDAP** – LDAP-based traffic
+* **NetBIOS** – NetBIOS-based traffic
 
-The analysis was performed using a subset of the **CIC-DDoS2019 dataset** and applies supervised machine learning techniques to identify and classify different traffic behaviors.
+The project uses a cleaned subset of the CIC-DDoS2019 dataset and focuses on understanding traffic behavior through feature engineering, visualization, and machine learning classification.
+
+---
 
 ## Project Workflow
 
-* Data cleaning and preprocessing
-* Feature selection from 80+ network traffic features
-* Class balancing to reduce dataset bias
-* Exploratory Data Analysis (EDA)
-* Random Forest model training
-* Model evaluation and performance analysis
-* Feature importance analysis
-* Correlation analysis
+### 1. Data Cleaning and Preprocessing
+
+* Removed unnecessary features from the original dataset.
+* Handled missing values.
+* Selected relevant network traffic features.
+* Extracted and balanced samples from BENIGN, LDAP, and NetBIOS classes.
+
+### 2. Feature Analysis
+
+* Feature selection from over 80 original network traffic features.
+* Correlation analysis to identify redundant features.
+* Visualization of feature relationships and distributions.
+
+### 3. Model Development
+
+* Label encoding for multi-class classification.
+* Train-test split for model evaluation.
+* Random Forest classifier implementation.
+* Model evaluation using multiple performance metrics.
+
+---
 
 ## Evaluation Metrics
 
@@ -33,26 +48,47 @@ The model was evaluated using:
 * F1-Score
 * Confusion Matrix
 
+---
+
 ## Results
 
-The Random Forest classifier achieved approximately **99.97% accuracy** on the test dataset.
+The Random Forest classifier achieved approximately **99.97% accuracy** on the processed dataset.
 
 ### Key Findings
 
-* Packet-length-related features contributed the most to classification performance.
-* The dataset initially exhibited significant class imbalance.
-* Strong feature separation between BENIGN, LDAP, and NetBIOS traffic resulted in high classification accuracy.
-* Several highly correlated features provided redundant information.
-* Packet-size-related features were the most influential predictors of network traffic behavior.
+* Packet-length-related features contributed most to classification performance.
+* Strong separation exists between BENIGN, LDAP, and NetBIOS traffic patterns.
+* Several packet-related features were highly correlated and provided similar information.
+* Feature importance analysis showed that packet size and packet length features dominated the model's decision-making process.
 
-## Repository Contents
+---
 
-* `ModelVisuals.py` – Model training, evaluation, and visualization generation
-* `Classification of Network Traffic.pdf` – Detailed project report and analysis
+## Visualizations
 
-## Dataset
+The project includes the following visual analyses:
 
-The dataset used for this project is not included in this repository. The analysis was conducted on a cleaned subset of the CIC-DDoS2019 dataset containing BENIGN, LDAP, and NetBIOS traffic samples.
+* Class Distribution
+* Confusion Matrix
+* Feature Importance
+* Packet Length Mean vs Label (Box Plot)
+* Correlation Heatmap
+
+Generated graphs can be found in the **Visuals/** directory.
+
+---
+
+## Repository Structure
+
+```text
+Network-Traffic-Classification/
+│
+├── Cleaning.py          # Dataset cleaning and preprocessing
+├── model.py             # Model training and evaluation
+├── Visuals/             # Generated graphs and visualizations
+├── README.md
+├── LICENSE
+└── .gitignore
+```
 
 ## Technologies Used
 
@@ -64,6 +100,16 @@ The dataset used for this project is not included in this repository. The analys
 * Scikit-learn
 * Joblib
 
+---
+
+## Dataset
+
+The dataset used for this project is derived from the CIC-DDoS2019 dataset.
+
+The cleaned dataset used during experimentation is not included in this repository.
+
+---
+
 ## Conclusion
 
-The Random Forest model performed exceptionally well in distinguishing between BENIGN, LDAP, and NetBIOS traffic. The results indicate that packet-size-related features play a significant role in traffic classification, while several correlated features provide overlapping information that may be reduced in future work.
+The results demonstrate that Random Forest can effectively classify BENIGN, LDAP, and NetBIOS traffic with very high accuracy. Feature analysis indicates that packet-size-related characteristics play a significant role in distinguishing different traffic types, while several highly correlated features contribute redundant information.
